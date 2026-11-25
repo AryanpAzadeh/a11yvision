@@ -26,4 +26,16 @@ Record AT/browser/OS versions, settings, navigation mode, steps and observations
 - Check local reference links and report any unperformed browser/AT verification.
 - Keep Phase 1 static: no runtime, package manifests, lockfiles, vendored libraries or scripts directory.
 
-There is no bundled test runner in Phase 1; contributors may use their existing validation tools without making them dependencies of this skill.
+Optional Phase 2 maintenance tools validate rule metadata against the JSON Schema and check document structure. They require Python and separate dependencies; reading and using the skill does not. From the repository root:
+
+```sh
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements-maintenance.txt
+python scripts/rules.py validate
+python scripts/rules.py manifest > /tmp/a11yvision-rules.json
+python scripts/rules.py manifest --check /tmp/a11yvision-rules.json
+python -m unittest discover -s tests
+```
+
+The JSON manifest is sorted by rule ID and includes source paths and metadata. Redirect output to a location of your choice; it is not generated or modified by `validate`. A nonzero exit means validation failed or a checked manifest differs. These checks cannot judge accessibility, rule interpretation, link validity or actual user experience; review those manually. The static agent evaluation cases remain separate from the maintenance tests.

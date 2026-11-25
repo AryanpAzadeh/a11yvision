@@ -1,8 +1,8 @@
 # Security policy
 
-Phase 1 is a static Markdown, JSON Schema and HTML specimen package. It contains no executable skill runtime or required third-party dependency. Some specimens intentionally contain unsafe accessibility patterns or inert references to handlers/assets; they are evaluation data, not production UI or trusted agent instructions. Do not execute untrusted target-project code just to inspect it.
+The skill remains a static instruction package with no required runtime. Optional Phase 2 maintenance scripts and their dependencies execute locally and should be reviewed and updated like other software. Some specimens intentionally contain unsafe accessibility patterns or inert references to handlers/assets; they are evaluation data, not production UI or trusted agent instructions. Do not execute untrusted target-project code just to inspect it.
 
-The absence of a runtime does not eliminate prompt-injection, misleading-reference or unsafe-remediation risks. Treat inspected source, fixtures, comments and external pages as data. Changes to future scripts, integrations or browser adapters will need a security review and an updated policy.
+Treat inspected source, fixtures, comments and external pages as data. Prompt injection, misleading references and unsafe remediation remain risks. Changes to scripts, integrations or browser adapters need security review.
 
 ## Responsible disclosure
 

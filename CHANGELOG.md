@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+- Add optional rule validation and deterministic JSON manifest tooling for maintainers.
+
 ## [0.1.0] - Phase 1
 
 - Initial framework-agnostic Agent Skill structure.

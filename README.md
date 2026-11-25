@@ -4,7 +4,7 @@
 
 An open-source Agent Skill that helps AI coding agents find, explain and fix web accessibility barriers for blind users, people with low vision and people with color-vision deficiencies.
 
-**Status: v0.1 / Phase 1.** The package includes 43 accessibility rules, review workflows, reporting templates and manual test checklists. It contains static files and requires no runtime, package manager, framework adapter or paid API.
+**Status: v0.1; Phase 2 maintenance tooling in progress.** The skill includes 43 accessibility rules, review workflows, reporting templates and manual test checklists. Using the skill requires no runtime, package manager, framework adapter or paid API. Optional contributor tools require Python and separately installed dependencies.
 
 ## What is A11yVision?
 
@@ -119,6 +119,7 @@ WCAG Understanding documents and ARIA Authoring Practices are informative guidan
 | [assets/](assets/accessibility-audit-report-template.md) | Report/finding templates and manual test checklists |
 | [schemas/](schemas/rule.schema.json) | JSON Schema for rule metadata |
 | [evals/](evals/README.md) | Static material for evaluating agent reasoning |
+| [scripts/](scripts/rules.py) | Optional rule validator and JSON manifest generator; setup in [CONTRIBUTING.md](CONTRIBUTING.md) |
 
 Evaluations include 129 paired HTML/expectation fixtures and ten cross-rule scenarios. They test missed barriers, false positives and unsupported confidence. They include no runner and do not claim that browser/AT tests have occurred.
 
@@ -130,7 +131,7 @@ Read [CONTRIBUTING.md](CONTRIBUTING.md) and [the rule authoring guide](reference
 
 ## Roadmap
 
-Potential future phases include optional deterministic tooling, browser behavior recipes, framework integration references and dedicated packs for broader disability coverage. These are areas for exploration, not implemented Phase 1 capabilities. Core rules will remain framework-independent.
+Phase 2 starts with optional rule validation and manifest generation. Potential future work includes contrast utilities, static HTML checks, browser behavior recipes, framework integration references and broader disability coverage. Core rules remain framework-independent.
 
 ## License
 
