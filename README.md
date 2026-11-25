@@ -4,7 +4,7 @@
 
 An open-source Agent Skill that helps AI coding agents find, explain and fix web accessibility barriers for blind users, people with low vision and people with color-vision deficiencies.
 
-**Status: 0.2.0 in development, unreleased.** Version 0.1.0 introduced the 43-rule skill; the current development version adds optional Phase 2 tools. Using the core skill requires no runtime, package manager, framework adapter or paid API. The optional tools require Python; only rule validation and manifest generation require additional Python dependencies. See the [changelog](CHANGELOG.md) for version history.
+**Status: available on GitHub; version 0.2.0 in development.** Version 0.1.0 introduced the 43-rule skill; the current development version adds optional Phase 2 tools. Using the core skill requires no runtime, package manager, framework adapter or paid API. The optional tools require Python; only rule validation and manifest generation require additional Python dependencies. See the [changelog](CHANGELOG.md) for version history.
 
 ## What is A11yVision?
 

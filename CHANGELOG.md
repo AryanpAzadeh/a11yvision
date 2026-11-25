@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+Changes in this section may already be available in the GitHub repository; they are grouped here until a versioned release is made.
+
 ### 0.2.0 (in development)
 
 - Add optional rule validation and deterministic JSON manifest tooling for maintainers.
