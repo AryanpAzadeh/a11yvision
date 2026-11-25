@@ -119,7 +119,7 @@ WCAG Understanding documents and ARIA Authoring Practices are informative guidan
 | [assets/](assets/accessibility-audit-report-template.md) | Report/finding templates and manual test checklists |
 | [schemas/](schemas/rule.schema.json) | JSON Schema for rule metadata |
 | [evals/](evals/README.md) | Static material for evaluating agent reasoning |
-| [scripts/](scripts/rules.py) | Optional rule validator and JSON manifest generator; setup in [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [scripts/](scripts/rules.py) | Optional rule validator, JSON manifest generator and [contrast calculator](scripts/contrast.py); usage in [CONTRIBUTING.md](CONTRIBUTING.md) |
 
 Evaluations include 129 paired HTML/expectation fixtures and ten cross-rule scenarios. They test missed barriers, false positives and unsupported confidence. They include no runner and do not claim that browser/AT tests have occurred.
 
@@ -131,7 +131,7 @@ Read [CONTRIBUTING.md](CONTRIBUTING.md) and [the rule authoring guide](reference
 
 ## Roadmap
 
-Phase 2 starts with optional rule validation and manifest generation. Potential future work includes contrast utilities, static HTML checks, browser behavior recipes, framework integration references and broader disability coverage. Core rules remain framework-independent.
+Phase 2 includes optional rule validation, manifest generation and an opaque sRGB contrast calculator. Potential future work includes static HTML checks, browser behavior recipes, framework integration references and broader disability coverage. Core rules remain framework-independent.
 
 ## License
 

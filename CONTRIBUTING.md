@@ -24,7 +24,7 @@ Record AT/browser/OS versions, settings, navigation mode, steps and observations
 - Check direct authority links, scope, exceptions and evidence thresholds.
 - Review the changed rule and fixtures for misleading passes and destructive fixes.
 - Check local reference links and report any unperformed browser/AT verification.
-- Keep Phase 1 static: no runtime, package manifests, lockfiles, vendored libraries or scripts directory.
+- Keep the core skill usable as static references; optional maintenance scripts must not become required to use it.
 
 Optional Phase 2 maintenance tools validate rule metadata against the JSON Schema and check document structure. They require Python and separate dependencies; reading and using the skill does not. From the repository root:
 
@@ -39,3 +39,13 @@ python -m unittest discover -s tests
 ```
 
 The JSON manifest is sorted by rule ID and includes source paths and metadata. Redirect output to a location of your choice; it is not generated or modified by `validate`. A nonzero exit means validation failed or a checked manifest differs. These checks cannot judge accessibility, rule interpretation, link validity or actual user experience; review those manually. The static agent evaluation cases remain separate from the maintenance tests.
+
+## Contrast calculation
+
+The optional contrast calculator uses only the Python standard library. Quote each color so the shell does not interpret `#` as a comment:
+
+```sh
+python3 scripts/contrast.py '#777' '#ffffff'
+```
+
+Provide two final, opaque sRGB colors in `#RGB` or `#RRGGBB` form, resolved for the actual rendered state. The tool does not resolve CSS variables, transparency, gradients, images, blending or overlays; obtain final colors first or report that the contrast cannot be verified. It reports the ratio and numeric threshold comparisons using the unrounded value. It does not decide text size, applicable WCAG exceptions, user experience or conformance. See [text contrast](references/rules/visual-presentation/AV-CON-001.md) and [non-text contrast](references/rules/visual-presentation/AV-CON-002.md).
