@@ -4,7 +4,7 @@
 
 An open-source Agent Skill that helps AI coding agents find, explain and fix web accessibility barriers for blind users, people with low vision and people with color-vision deficiencies.
 
-**Status: v0.1; Phase 2 maintenance tooling in progress.** The skill includes 43 accessibility rules, review workflows, reporting templates and manual test checklists. Using the skill requires no runtime, package manager, framework adapter or paid API. Optional contributor tools require Python and separately installed dependencies.
+**Status: 0.2.0 in development, unreleased.** Version 0.1.0 introduced the 43-rule skill; the current development version adds optional Phase 2 tools. Using the core skill requires no runtime, package manager, framework adapter or paid API. The optional tools require Python; only rule validation and manifest generation require additional Python dependencies. See the [changelog](CHANGELOG.md) for version history.
 
 ## What is A11yVision?
 
@@ -51,7 +51,9 @@ Keep the package together. Copying only `SKILL.md` loses the linked rules, templ
     ├── references/
     ├── assets/
     ├── schemas/
-    └── evals/
+    ├── evals/
+    ├── scripts/                    # optional tools
+    └── requirements-maintenance.txt # optional rule-tool dependencies
 ```
 
 The path above is illustrative; use your agent's actual skills directory. No build or dependency-installation command is required. Reload or restart the agent if its discovery mechanism requires it.
@@ -73,6 +75,25 @@ If your agent has no skill-discovery support but can read files, point it direct
 > Use A11yVision to prepare a manual test plan for this dialog and its validation flow. Include keyboard steps, focus transitions and expected screen-reader behavior.
 
 The agent can review source without a running application. Rendered appearance, geometry and interaction checks need relevant browser evidence; claims about screen-reader output need actual AT testing. The skill does not supply those tools.
+
+## Use across projects
+
+Install A11yVision once in your agent's user-level skills directory to make it available across projects, or copy it into a project-level skills directory when it should be shared only with that project. The exact directory and discovery behavior depend on your agent. Open the target project in the agent and specify the files, component or flow to review. A project-level copy can be versioned with the project if its team chooses to maintain it there.
+
+For example, in a static site, ask the agent to inspect `index.html` and its styles. In a React or Vue project, point it to a component and ask it to follow shared components to their rendered semantics. In a Laravel/Blade project, identify the view and its shared layouts, translations and interactive behavior. The agent should preserve each project's conventions and report when browser or assistive-technology evidence is missing.
+
+### Optional command-line tools
+
+From an A11yVision checkout, substitute the actual path to an HTML file in another project:
+
+```sh
+python3 scripts/check_html.py /path/to/other-project/index.html
+python3 scripts/contrast.py '#777' '#ffffff'
+```
+
+Both commands use Python's standard library. The HTML checker reads the specified files and emits JSON review candidates; it does not run the application or follow component imports. The contrast calculator accepts resolved opaque sRGB hex colors; it cannot derive final colors from styles or images. Neither command proves accessibility or WCAG conformance.
+
+Rule validation and manifest generation are for maintaining the A11yVision rules themselves. They require the separately installed dependencies in `requirements-maintenance.txt`; see [CONTRIBUTING.md](CONTRIBUTING.md). They do not scan a target application.
 
 ## Coverage
 
@@ -100,7 +121,7 @@ See the [43-rule index](references/rule-index.md) for exact applicability and ex
 
 Reports use [the evidence model](references/evidence-and-outcomes.md) and [report template](assets/accessibility-audit-report-template.md) to keep unresolved checks visible. A11yVision does not produce an accessibility score.
 
-A11yVision is not an automated scanner, accessibility overlay, browser extension, hosted service or certification product. Phase 1 focuses on visual access and does not cover every WCAG A/AA success criterion. Source alone cannot prove reflow, focus behavior, contrast with unresolved colors or screen-reader usability.
+A11yVision provides a limited static checker, not a comprehensive automated scanner. It is not an accessibility overlay, browser extension, hosted service or certification product. The rule set focuses on visual access and does not cover every WCAG A/AA success criterion. Source alone cannot prove reflow, focus behavior, contrast with unresolved colors or screen-reader usability.
 
 **A review identifies issues within the tested scope and available evidence. It does not certify WCAG conformance or replace manual assistive-technology testing and testing by disabled users.** A passing check is local to its rule and tested surface; one passing AT/browser combination is not universal proof.
 
@@ -121,7 +142,7 @@ WCAG Understanding documents and ARIA Authoring Practices are informative guidan
 | [evals/](evals/README.md) | Static material for evaluating agent reasoning |
 | [scripts/](scripts/rules.py) | Optional rule validator, JSON manifest generator, [contrast calculator](scripts/contrast.py) and [static HTML checker](scripts/check_html.py); usage in [CONTRIBUTING.md](CONTRIBUTING.md) |
 
-Evaluations include 129 paired HTML/expectation fixtures and ten cross-rule scenarios. They test missed barriers, false positives and unsupported confidence. They include no runner and do not claim that browser/AT tests have occurred.
+The agent evaluation material includes 129 paired HTML/expectation fixtures and ten cross-rule scenarios for assessing missed barriers, false positives and unsupported confidence. Those cases have no automated agent-evaluation runner. Separate Python unit tests cover the optional tools. Neither implies browser or AT tests were performed.
 
 ## Contributing
 
