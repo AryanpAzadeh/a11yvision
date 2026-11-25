@@ -4,6 +4,7 @@
 
 - Add optional rule validation and deterministic JSON manifest tooling for maintainers.
 - Add an optional opaque sRGB contrast calculator with unrounded threshold comparisons.
+- Add an optional static HTML review-candidate checker.
 
 ## [0.1.0] - Phase 1
 

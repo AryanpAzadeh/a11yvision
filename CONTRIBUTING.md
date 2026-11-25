@@ -40,6 +40,10 @@ python -m unittest discover -s tests
 
 The JSON manifest is sorted by rule ID and includes source paths and metadata. Redirect output to a location of your choice; it is not generated or modified by `validate`. A nonzero exit means validation failed or a checked manifest differs. These checks cannot judge accessibility, rule interpretation, link validity or actual user experience; review those manually. The static agent evaluation cases remain separate from the maintenance tests.
 
+## Static HTML review candidates
+
+Run `python3 scripts/check_html.py page.html` or supply several HTML files. It uses the Python standard library and prints JSON with paths, source line numbers, rule IDs and `NEEDS_REVIEW` candidates. It checks missing image `alt`, missing or empty document language and title when an `html` element is present, and selected potentially focusable elements marked `aria-hidden`. A return code of 0 means files were read, not that they passed accessibility checks; unreadable input returns 2. Fragments, templates, generated markup, CSS and interactions require context. No candidates does not mean the page is accessible. The checker does not execute JavaScript, compute names or styles, assess image meaning, inspect descendants of hidden ancestors, or perform browser/AT tests. Inspect each candidate under its linked rule and report unsupported conclusions as unresolved.
+
 ## Contrast calculation
 
 The optional contrast calculator uses only the Python standard library. Quote each color so the shell does not interpret `#` as a comment:
